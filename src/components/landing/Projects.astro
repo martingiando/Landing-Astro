@@ -1,0 +1,29 @@
+---
+import { projects } from '../../config/projects.json';
+import Button from './Button.astro';
+
+interface Project {
+  title: string;
+  desc: string;
+  img: string;
+}
+---
+
+<section>
+  <h2 class='font-bold text-5xl my-10 text-center'>Projects</h2>
+
+  {
+    projects.map((project: Project) => (
+      <div class='my-5 flex flex-col mb-2 gap-y-10 md:flex-row text-center md:text-left border-b-2 last:border-b-0 py-10'>
+        <div class='flex-1 p-4'>
+          <h3 class='font-bold text-3xl my-4'>{project.title}</h3>
+          <p class='text-xl my-2'>{project.desc}</p>
+          <Button text='More info' />
+        </div>
+        <div class='flex-1'>
+          <img src={project.img} alt={project.title} class='w-72 m-auto' />
+        </div>
+      </div>
+    ))
+  }
+</section>
